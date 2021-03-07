@@ -12,10 +12,16 @@ docker run -dit --name kacpp-ja kagalpandh/kacpp-pydev
 ```
 
 ## 説明
-Pythonをスースからインストールしてある。
+Pythonをソースからインストールしてある。
+porgでインストールしてあり
+```shell
+porg -f Python-3.9.2
+```
+でファイル一覧を見ることができる。
 インストール場所は/usr/local/Python-{PYTHON_VERSION}である。
 Pythonをコンパイルする際にgccなどを使用するがこのイメージにはGCC開発環境は
 インストールされていない。
+
 
 ##構成
 Pythonのインストール場所は/usr/local/Python-${PYTHON_VERSION}である。
