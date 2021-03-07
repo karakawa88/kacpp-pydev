@@ -9,6 +9,7 @@ ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_SRC_FILE=${PYTHON_DEST}.tar.xz
 ENV         PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYTHON_SRC_FILE}
 ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
+ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 ENV         LD_LIBRARY_PATH=${PYTHON_HOME}/lib
 COPY        python-source-install.txt  /usr/local/sh/apt-install
 # 開発環境インストール
@@ -17,13 +18,13 @@ RUN         apt update \
             && /usr/local/sh/system/apt-install.sh install python-source-install.txt \
             && wget ${PYTHON_URL} && tar -Jxvf ${PYTHON_SRC_FILE} && cd ${PYTHON_DEST} \
                 &&  ./configure --prefix=/usr/local/${PYTHON_DEST} --with-ensurepip --enable-shared \
-                && make && make install  \
+                && make && porg make install  \
             && /usr/local/sh/system/apt-install.sh uninstall gccdev.txt \
                 && apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* \
                 && cd ../ && rm -rf ${PYTHON_DEST} \
+RUN         cd /usr/local && ln -s ${PYTHON_DEST} python
 RUN         echo "/usr/local/python/lib" >>/etc/ld.so.conf && ldconfig \
             && ${PYTHON_HOME}/bin/pip3 install --upgrade setuptools pip && ${PYTHON_HOME}/bin/pip3 install ez_setup
-RUN         cd /usr/local && ln -s ${PYTHON_DEST} python
 COPY        rcprofile /etc/rc.d
 #終了処理
 #RUN         apt clean && rm -rf /var/lib/apt/lists/*
