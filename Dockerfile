@@ -30,7 +30,6 @@ ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
 ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 ENV         LD_LIBRARY_PATH=${PYTHON_HOME}/lib
-RUN         mkdir ${PYTHON_DEST}
 COPY        --from=builder /usr/local/${PYTHON_DEST}/ ${PYTHON_HOME}
 COPY        python-source-install.txt .
 COPY        rcprofile /etc/rc.d
