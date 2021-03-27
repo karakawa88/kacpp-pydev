@@ -13,15 +13,15 @@ ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr
 ENV         LD_LIBRARY_PATH=${PYTHON_HOME}/lib
 COPY        python-source-install.txt  /usr/local/sh/apt-install
 # 開発環境インストール
-RUN         apt update \
-            && /usr/local/sh/system/apt-install.sh install gccdev.txt \
-            && /usr/local/sh/system/apt-install.sh install python-source-install.txt \
-            && wget ${PYTHON_URL} && tar -Jxvf ${PYTHON_SRC_FILE} && cd ${PYTHON_DEST} \
-                &&  ./configure --prefix=/usr/local/${PYTHON_DEST} --with-ensurepip --enable-shared \
-                && make && make install  && \
-            && /usr/local/sh/system/apt-install.sh uninstall gccdev.txt \
-                && apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* \
-                && cd ../ && rm -rf ${PYTHON_DEST}
+RUN         apt update && \
+            /usr/local/sh/system/apt-install.sh install gccdev.txt && \
+            /usr/local/sh/system/apt-install.sh install python-source-install.txt && \
+            wget ${PYTHON_URL} && tar -Jxvf ${PYTHON_SRC_FILE} && cd ${PYTHON_DEST} && \
+                ./configure --prefix=/usr/local/${PYTHON_DEST} --with-ensurepip --enable-shared && \
+                make && make install  && \
+                /usr/local/sh/system/apt-install.sh uninstall gccdev.txt && \
+                apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* && \
+                cd ../ && rm -rf ${PYTHON_DEST}
 FROM        kagalpandh/kacpp-ja
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
