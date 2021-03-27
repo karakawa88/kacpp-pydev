@@ -8,7 +8,7 @@ debian:buster-slimイメージを基に作成されている。
 ## 使い方
 ```shell
 docker image pull kagalpandh/kacpp-pydev
-docker run -dit --name kacpp-ja kagalpandh/kacpp-pydev
+docker run -dit --name kacpp-pydev kagalpandh/kacpp-pydev
 ```
 
 ## 説明
@@ -31,7 +31,7 @@ Pythonのインストール場所は/usr/local/Python-${PYTHON_VERSION}である
 PATHもとうしてある(/usr/local/Python-{VERSION}/bin)。
 
 ##ベースイメージ
-kagalpandh/kacpp-ja
+kagalpandh/kacpp-base
 
 # その他
 DockerHub: [kagalpandh/kacpp-ja](https://hub.docker.com/repository/docker/kagalpandh/kacpp-gccdev)<br />

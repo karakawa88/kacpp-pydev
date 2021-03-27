@@ -22,7 +22,7 @@ RUN         apt update && \
                 /usr/local/sh/system/apt-install.sh uninstall gccdev.txt && \
                 apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* && \
                 cd ../ && rm -rf ${PYTHON_DEST}
-FROM        kagalpandh/kacpp-ja
+FROM        kagalpandh/kacpp-base
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
 ENV         PYTHON_VERSION=3.9.2
