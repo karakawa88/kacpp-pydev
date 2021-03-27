@@ -18,12 +18,12 @@ RUN         apt update \
             && /usr/local/sh/system/apt-install.sh install python-source-install.txt \
             && wget ${PYTHON_URL} && tar -Jxvf ${PYTHON_SRC_FILE} && cd ${PYTHON_DEST} \
                 &&  ./configure --prefix=/usr/local/${PYTHON_DEST} --with-ensurepip --enable-shared \
-                && make && porg -lD "make install"  \
+                && make && make install  && \
             && /usr/local/sh/system/apt-install.sh uninstall gccdev.txt \
                 && apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* \
                 && cd ../ && rm -rf ${PYTHON_DEST}
-RUN         cd /usr/local && ln -s ${PYTHON_DEST} python
-RUN         echo "/usr/local/python/lib" >>/etc/ld.so.conf && ldconfig \
+RUN         cd /usr/local && ln -s ${PYTHON_DEST} python \
+            && echo "/usr/local/python/lib" >>/etc/ld.so.conf && ldconfig \
             && ${PYTHON_HOME}/bin/pip3 install --upgrade setuptools pip && ${PYTHON_HOME}/bin/pip3 install ez_setup
 COPY        rcprofile /etc/rc.d
 #終了処理
