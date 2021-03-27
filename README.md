@@ -3,7 +3,7 @@
 ## 概要
 Pythonをソースからインストールして設定したDockerイメージ。
 Pythonのソースは3.9.2である。
-debianイメージを基に作成されている。
+debian:buster-slimイメージを基に作成されている。
 
 ## 使い方
 ```shell
@@ -13,11 +13,13 @@ docker run -dit --name kacpp-ja kagalpandh/kacpp-pydev
 
 ## 説明
 Pythonをソースからインストールしてある。
+<!--
 porgでインストールしてあり
 ```shell
 porg -f Python-3.9.2
 ```
 でファイル一覧を見ることができる。
+-->
 インストール場所は/usr/local/Python-{PYTHON_VERSION}である。
 Pythonをコンパイルする際にgccなどを使用するがこのイメージにはGCC開発環境は
 インストールされていない。
@@ -27,6 +29,9 @@ Pythonをコンパイルする際にgccなどを使用するがこのイメー�
 Pythonのインストール場所は/usr/local/Python-${PYTHON_VERSION}である。
 これをPYTHON_HOMEという環境変数で参照できここに/usr/local/pythonでリンクが貼ってある。
 PATHもとうしてある(/usr/local/Python-{VERSION}/bin)。
+
+##ベースイメージ
+kagalpandh/kacpp-ja
 
 # その他
 DockerHub: [kagalpandh/kacpp-ja](https://hub.docker.com/repository/docker/kagalpandh/kacpp-gccdev)<br />
