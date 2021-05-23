@@ -6,3 +6,4 @@ libssl1.1
 libpq5
 postgresql-client-11
 postgresql-common
+
