@@ -1,0 +1,8 @@
+libffi-dev
+libreadline-dev
+libssl-dev
+#PostgreSQL Client
+libpq5
+postgresql-client-11
+postgresql-client-common
+

@@ -11,11 +11,11 @@ ENV         PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYT
 ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
 ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 ENV         LD_LIBRARY_PATH=${PYTHON_HOME}/lib
-COPY        python-source-install.txt  /usr/local/sh/apt-install
+COPY        sh/apt-install/pydev-dev.txt  /usr/local/sh/apt-install
 # 開発環境インストール
 RUN         apt update && \
             /usr/local/sh/system/apt-install.sh install gccdev.txt && \
-            /usr/local/sh/system/apt-install.sh install python-source-install.txt && \
+            /usr/local/sh/system/apt-install.sh install pydev-dev.txt && \
             wget ${PYTHON_URL} && tar -Jxvf ${PYTHON_SRC_FILE} && cd ${PYTHON_DEST} && \
                 ./configure --prefix=/usr/local/${PYTHON_DEST} --with-ensurepip --enable-shared && \
                 make && make install  && \
@@ -31,14 +31,14 @@ ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
 ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 ENV         LD_LIBRARY_PATH=${PYTHON_HOME}/lib
 COPY        --from=builder /usr/local/${PYTHON_DEST}/ ${PYTHON_HOME}
-COPY        python-source-install.txt .
+COPY        sh/apt-install/pydev.txt /usr/local/sh/apt-install
 COPY        rcprofile /etc/rc.d
 RUN         apt update && \
-            cat python-source-install.txt | xargs apt install -y && \
+            /usr/local/sh/system/apt-install.sh install pydev.txt && \
 #   porgでPythonをパッケージ管理
 #             chown -R root.root /usr/local && \
 #             find ${PYTHON_HOME} -type f -print | xargs porg -l -p ${PYTHON_DEST} && \
             cd /usr/local && ln -s ${PYTHON_DEST} python && \
             echo "/usr/local/python/lib" >>/etc/ld.so.conf && ldconfig && \
             ${PYTHON_HOME}/bin/pip3 install --upgrade setuptools pip && ${PYTHON_HOME}/bin/pip3 install ez_setup && \
-            cd ~/ && apt clean && rm -rf /var/lib/apt/lists/* && rm -f python-source-install.txt
+            cd ~/ && apt clean && rm -rf /var/lib/apt/lists/*

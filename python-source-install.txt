@@ -1,4 +1,0 @@
-libffi-dev
-libreadline-dev
-libssl-dev
-
