@@ -4,7 +4,7 @@ FROM        kagalpandh/kacpp-gccdev AS builder
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
 ENV         DEBIAN_FORONTEND=noninteractive
-ENV         PYTHON_VERSION=3.9.2
+ENV         PYTHON_VERSION=3.9.5
 ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_SRC_FILE=${PYTHON_DEST}.tar.xz
 ENV         PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYTHON_SRC_FILE}
@@ -25,7 +25,7 @@ RUN         apt update && \
 FROM        kagalpandh/kacpp-base
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
-ENV         PYTHON_VERSION=3.9.2
+ENV         PYTHON_VERSION=3.9.5
 ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
 ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
