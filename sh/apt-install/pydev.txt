@@ -5,12 +5,4 @@ libssl1.1
 #PostgreSQL Client
 libpq5
 postgresql-client-11
-<<<<<<< HEAD
-postgresql-client-common
-
-||||||| merged common ancestors
 postgresql-common
-=======
-postgresql-common
-
->>>>>>> dev
