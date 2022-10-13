@@ -1,10 +1,10 @@
 # Python開発環境を持つdebianイメージ
 # 日本語化も設定済み
-FROM        kagalpandh/kacpp-gccdev AS builder
+FROM        kagalpandh/kacpp-gccdev:8 AS builder
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
 ENV         DEBIAN_FORONTEND=noninteractive
-ENV         PYTHON_VERSION=3.10.8
+ENV         PYTHON_VERSION=3.9.5
 ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_SRC_FILE=${PYTHON_DEST}.tar.xz
 ENV         PYTHON_URL=https://www.python.org/ftp/python/${PYTHON_VERSION}/${PYTHON_SRC_FILE}
@@ -21,10 +21,10 @@ RUN         apt update && \
                 make && make install  && \
                 apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/* && \
                 cd ../ && rm -rf ${PYTHON_DEST}
-FROM        kagalpandh/kacpp-base
+FROM        kagalpandh/kacpp-base:debian-buster-slim
 SHELL       [ "/bin/bash", "-c" ]
 WORKDIR     /root
-ENV         PYTHON_VERSION=3.10.8
+ENV         PYTHON_VERSION=3.9.5
 ENV         PYTHON_DEST=Python-${PYTHON_VERSION}
 ENV         PYTHON_HOME=/usr/local/${PYTHON_DEST}
 ENV         PATH=${PYTHON_HOME}/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin

@@ -2,13 +2,13 @@
 
 ## 概要
 Pythonをソースからインストールして設定したDockerイメージ。
-Pythonのソースは3.10.8である。
-debian:bullseye-slimイメージを基に作成されている。
+Pythonのバージョンは3.9.5である。
+kacpp-base:latestイメージを基に作成されている。
 
 ## 使い方
 ```shell
-docker image pull kagalpandh/kacpp-pydev
-docker run -dit --name kacpp-pydev kagalpandh/kacpp-pydev
+docker image pull kagalpandh/kacpp-pydev:3.9.5
+docker run -dit --name kacpp-pydev kagalpandh/kacpp-pydev:3.9.5
 ```
 
 ## 説明
@@ -24,9 +24,9 @@ Pythonのインストール場所は/usr/local/Python-${PYTHON_VERSION}である
 PATHもとうしてある(/usr/local/Python-{VERSION}/bin)。
 
 ##ベースイメージ
-kagalpandh/kacpp-base
+kagalpandh/kacpp-ja:latest
 
 # その他
-DockerHub: [kagalpandh/kacpp-pydev](https://hub.docker.com/repository/docker/kagalpandh/kacpp-pydev)<br />
-GitHub: [karakawa88/kacpp-ja](https://github.com/karakawa88/kacpp-pydev)
+DockerHub: [kagalpandh/kacpp-pydev:3.9.5](https://hub.docker.com/repository/docker/kagalpandh/kacpp-pydev:3.9.5)<br />
+GitHub: [karakawa88/kacpp-pydev](https://github.com/karakawa88/kacpp-ja)
 
